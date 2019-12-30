@@ -2,8 +2,9 @@ import pickle
 from underthesea import word_tokenize
 from underthesea import pos_tag
 import numpy as np
+from MyTextEncoder import  MyTextEncoder
 
-
+'''
 def encode_text(text):
     text = text.lower()
     text_format = text.translate(translator)
@@ -42,6 +43,8 @@ tags_dictionary = {
 }
 
 translator = str.maketrans('', '', r"""!"#$%&'()*+,-./:;<=>?@”“[\]^_`{|}~""")
+'''
+myTextEncoder = MyTextEncoder()
 
 sentences_1_values = []
 sentences_2_values = []
@@ -52,14 +55,14 @@ labels = []
 with open("vnPara/Sentences1.txt", "r", encoding="utf-8") as file:
     lines = file.read().splitlines()
     for line in lines:
-        values, tags = encode_text(line)
+        values, tags = myTextEncoder.encode_text(line)
         sentences_1_values.append(np.asarray(values))
         sentences_1_tags.append(np.asarray(tags))
 
 with open("vnPara/Sentences2.txt", "r", encoding="utf-8") as file:
     lines = file.read().splitlines()
     for line in lines:
-        values, tags = encode_text(line)
+        values, tags = myTextEncoder.encode_text(line)
         sentences_2_values.append(np.asarray(values))
         sentences_2_tags.append(np.asarray(tags))
 
